@@ -1,0 +1,19 @@
+.youTubeVideos {
+  .card {
+    width: 70%;
+    margin: 20px auto;
+
+    iframe {
+      width: 100%;
+      height: 300px;
+    }
+
+    a {
+      color: #02c878 !important;
+    }
+
+    .card-image {
+      padding: 10px;
+    }
+  }
+}
