@@ -14,5 +14,5 @@ export const loadYouTubeVideos = (searchQuery, maxResults) => async (dispatch) =
   const results = await data.json();
 
   dispatch(disablePreloader());
-  dispatch({ type: LOAD_YOUTUBE_VIDEOS, payload: results });
+  dispatch({ type: LOAD_YOUTUBE_VIDEOS, payload: results.items });
 };
