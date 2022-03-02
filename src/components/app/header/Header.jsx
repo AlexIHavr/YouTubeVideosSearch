@@ -17,8 +17,7 @@ const Header = ({ state: { results, loading }, getResults, clearResults }) => {
     const documentElement = document.documentElement;
     if (
       documentElement.scrollTop + documentElement.clientHeight > documentElement.scrollHeight &&
-      searchQuery &&
-      !loading
+      searchQuery
     ) {
       getResults({ searchQuery, maxResults: 5 });
       window.removeEventListener('scroll', addResultsOnScroll);
