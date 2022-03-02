@@ -1,38 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import './header.scss';
 
-const Header = ({ state: { results, loading }, loadYouTubeVideos, clearResults }) => {
+const Header = ({ state: { results, loading }, getResults, clearResults }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const loadingYouTubeVideos = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!loading && searchQuery) {
       clearResults();
-      loadYouTubeVideos(searchQuery, 5);
+      getResults({ searchQuery, maxResults: 5 });
+    }
+  };
+
+  const addResultsOnScroll = () => {
+    const documentElement = document.documentElement;
+    if (
+      documentElement.scrollTop + documentElement.clientHeight > documentElement.scrollHeight &&
+      searchQuery &&
+      !loading
+    ) {
+      getResults({ searchQuery, maxResults: 5 });
+      window.removeEventListener('scroll', addResultsOnScroll);
     }
   };
 
   useEffect(() => {
-    console.log('+');
-    window.onscroll = () => {
-      const documentElement = document.documentElement;
-      if (
-        documentElement.scrollTop + documentElement.clientHeight > documentElement.scrollHeight &&
-        searchQuery
-      ) {
-        loadYouTubeVideos(searchQuery, 5);
-        window.onscroll = () => {};
-      }
+    window.addEventListener('scroll', addResultsOnScroll);
+    return () => {
+      window.removeEventListener('scroll', addResultsOnScroll);
     };
   }, [results]);
 
   return (
     <header>
       <div className="row card">
-        <form className="col s12" onSubmit={loadingYouTubeVideos}>
+        <form className="col s12" onSubmit={handleSubmit}>
           <div className="input-field col s12">
-            <i className="material-icons prefix">search</i>
+            <button className="searchVideos btn waves-effect waves-light">
+              <i className="material-icons prefix">search</i>
+            </button>
             <input
               placeholder="Write searching videos"
               type="text"

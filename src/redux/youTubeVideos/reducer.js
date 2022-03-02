@@ -1,4 +1,4 @@
-import { CLEAR_RESULTS, DISABLE_PRELOADER, ENABLE_PRELOADER, LOAD_YOUTUBE_VIDEOS } from './types';
+import { CLEAR_RESULTS, STOP_LOADING, START_LOADING, ADD_RESULTS } from './types';
 
 const initialState = {
   results: [],
@@ -7,11 +7,11 @@ const initialState = {
 
 const youTubeVideosReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ENABLE_PRELOADER:
+    case START_LOADING:
       return { ...state, loading: true };
-    case DISABLE_PRELOADER:
+    case STOP_LOADING:
       return { ...state, loading: false };
-    case LOAD_YOUTUBE_VIDEOS:
+    case ADD_RESULTS:
       return { ...state, results: [...state.results, ...action.payload] };
     case CLEAR_RESULTS:
       return { ...state, results: [] };

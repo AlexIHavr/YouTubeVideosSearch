@@ -3,7 +3,6 @@ import './youTubeVideos.scss';
 
 const YouTubeVideos = ({ state: { results, loading } }) => {
   console.log(results);
-
   return (
     <div className="youTubeVideos">
       {loading ? (

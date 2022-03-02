@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
-import { clearResults } from '../../redux/youTubeVideos/actions';
-import { loadYouTubeVideos } from '../../redux/youTubeVideos/thunks';
+import { clearResults, getResults } from '../../redux/youTubeVideos/actions';
+// import { addResults } from '../../redux/youTubeVideos/thunks';
 import Header from './header/Header';
 import YouTubeVideos from './youTubeVideos/YouTubeVideos';
 
-const App = ({ state, loadYouTubeVideos, clearResults }) => {
+const App = ({ state, getResults, clearResults }) => {
   return (
     <div className="wrapper">
-      <Header state={state} loadYouTubeVideos={loadYouTubeVideos} clearResults={clearResults} />
+      <Header state={state} getResults={getResults} clearResults={clearResults} />
       <YouTubeVideos state={state} />
     </div>
   );
 };
 
 const mapStateToProps = ({ youTubeVideos }) => ({ state: youTubeVideos });
-const mapDispatchToProps = { loadYouTubeVideos, clearResults };
+const mapDispatchToProps = { getResults, clearResults };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
