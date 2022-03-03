@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { clearResults, getResults } from '../../redux/youTubeVideos/actions';
-// import { addResults } from '../../redux/youTubeVideos/thunks';
 import Header from './header/Header';
 import YouTubeVideos from './youTubeVideos/YouTubeVideos';
 

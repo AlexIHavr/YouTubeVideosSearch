@@ -1,8 +1,17 @@
-import { CLEAR_RESULTS, STOP_LOADING, START_LOADING, ADD_RESULTS, GET_RESULTS } from './types';
+import { createAction } from 'redux-actions';
+import {
+  CLEAR_RESULTS,
+  STOP_LOADING,
+  START_LOADING,
+  ADD_RESULTS,
+  GET_RESULTS,
+  SET_PAGE_TOKEN,
+} from './types';
 
-export const startLoading = (payload) => ({ type: START_LOADING, payload });
-export const stopLoading = (payload) => ({ type: STOP_LOADING, payload });
-export const addResults = (payload) => ({ type: ADD_RESULTS, payload });
-export const clearResults = (payload) => ({ type: CLEAR_RESULTS, payload });
+export const startLoading = createAction(START_LOADING);
+export const stopLoading = createAction(STOP_LOADING);
+export const addResults = createAction(ADD_RESULTS);
+export const clearResults = createAction(CLEAR_RESULTS);
+export const setPageToken = createAction(SET_PAGE_TOKEN);
 
-export const getResults = (payload) => ({ type: GET_RESULTS, payload });
+export const getResults = createAction(GET_RESULTS);

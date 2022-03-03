@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './header.scss';
 
-const Header = ({ state: { results, loading }, getResults, clearResults }) => {
+const Header = ({ state: { loading, pageToken }, getResults, clearResults }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSubmit = (e) => {
@@ -13,30 +13,29 @@ const Header = ({ state: { results, loading }, getResults, clearResults }) => {
     }
   };
 
-  const addResultsOnScroll = () => {
+  const addResultsOnScroll = useCallback(() => {
     const documentElement = document.documentElement;
     if (
       documentElement.scrollTop + documentElement.clientHeight > documentElement.scrollHeight &&
       searchQuery
     ) {
-      getResults({ searchQuery, maxResults: 5 });
-      window.removeEventListener('scroll', addResultsOnScroll);
+      getResults({ searchQuery, maxResults: 5, pageToken });
     }
-  };
+  }, [searchQuery, pageToken]);
 
   useEffect(() => {
     window.addEventListener('scroll', addResultsOnScroll);
     return () => {
       window.removeEventListener('scroll', addResultsOnScroll);
     };
-  }, [results]);
+  }, [addResultsOnScroll]);
 
   return (
     <header>
       <div className="row card">
         <form className="col s12" onSubmit={handleSubmit}>
           <div className="input-field col s12">
-            <button className="searchVideos btn waves-effect waves-light">
+            <button type="submit" className="searchVideos btn waves-effect waves-light">
               <i className="material-icons prefix">search</i>
             </button>
             <input
