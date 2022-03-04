@@ -16,7 +16,7 @@ function* addResultsWorker(action) {
   yield put(stopLoading());
 }
 
-async function getResults({ maxResults, searchQuery, pageToken }) {
+export async function getResults({ maxResults, searchQuery, pageToken }) {
   let URL = `https://www.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_YOUTUBE_KEY}&part=snippet&maxResults=${maxResults}&q=${searchQuery}`;
 
   if (pageToken) URL += `&pageToken=${pageToken}`;
