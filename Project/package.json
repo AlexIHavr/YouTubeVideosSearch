@@ -19,7 +19,7 @@
     "redux-saga": "^1.1.3",
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4",
-    "youtubevideocomponent": "^2.0.0"
+    "youtubevideocomponent": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

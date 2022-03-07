@@ -1,8 +1,9 @@
+import React from 'react';
+
 const YouTubeVideo = ({ videoId, title, description }) => (
   <div className="row card">
     <div className="card-image">
       <iframe
-        data-testid="iframe"
         src={`https://www.youtube.com/embed/${videoId}`}
         title="YouTube video player"
         frameBorder="0"
