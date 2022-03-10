@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { addResults, setPageToken, startLoading, stopLoading } from './actions';
+import { addResults, startLoading, stopLoading } from './actions';
 import { GET_RESULTS } from './types';
 
 export function* addResultsWatcher() {
@@ -11,8 +11,7 @@ function* addResultsWorker(action) {
 
   const payload = yield call(getResults, action.payload);
 
-  yield put(setPageToken(payload.nextPageToken));
-  yield put(addResults(payload.items));
+  yield put(addResults(payload));
   yield put(stopLoading());
 }
 
