@@ -1,0 +1,19 @@
+header {
+  width: 70%;
+  margin: 0 auto;
+  .input-field {
+    display: flex;
+    align-items: center;
+  }
+
+  button.searchVideos {
+    margin-right: 10px;
+    i {
+      position: static !important;
+    }
+  }
+}
+
+::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
